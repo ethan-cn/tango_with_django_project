@@ -1,5 +1,7 @@
 import os
 
+from pygments.unistring import cats
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'tango_with_django_project.settings')
 
@@ -40,10 +42,10 @@ def populate():
         {'title': 'Flask',
          'url': 'http://flask.pocoo.org'}]
 
-    cats = {'Python': {'pages': python_pages},
-            'Django': {'pages': django_pages},
+    cats = {'Python': {'pages': python_pages, 'views': 128, 'likes': 64},
+            'Django': {'pages': django_pages, 'views': 64, 'likes': 32},
 
-            'Other Frameworks': {'pages': other_pages}}
+            'Other Frameworks': {'pages': other_pages, "pages": other_pages, 'views': 32, 'likes': 16}}
 
     # If you want to add more categories or pages,
     # add them to the dictionaries above.
@@ -52,9 +54,9 @@ def populate():
     # and then adds all the associated pages for that category.
 
     for cat, cat_data in cats.items():
-        c = add_cat(cat)
-        for p in cat_data['pages']:
-            add_page(c, p['title'], p['url'])
+        c = add_cat(cat, cat_data['views'], cat_data['likes'])
+        for p in cat_data["pages"]:
+            add_page(c, p["title"], p["url"])
 
     # Print out the categories we have added.
 
