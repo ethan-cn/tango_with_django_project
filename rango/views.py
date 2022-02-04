@@ -19,7 +19,7 @@ def show_category(request,category_name_slug):
 def index(request):
     # return HttpResponse("Rango says hey there partner!<a href='/rango/about/'>About</a>")
     category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('views')[:5]
+    page_list = Page.objects.order_by('-views')[:5]
 
     context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!', 'categories': category_list,
                     'pages': page_list}
