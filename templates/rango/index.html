@@ -1,40 +1,37 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
 
-<html>
-<head>
-    <title>Rango</title>
-    {#            <!-- CSS -->#}
-    {#            <!-- JavaScript -->#}
-    {#        <!--CSS-->#}
-    {#        <link rel="stylesheet" href="{% static "css/base.css"%}">#}
-    {#        <!-- JavaScript -->#}
-    {#       <script src="{% static "js/jquery.js" %}"></script>#}
-</head>
-<body>
+{% block title_block %}
+    Homepage
+{% endblock %}
+
+{% block body_block %}
+
 {#            <!-- Image-->#}
-<h1>Rango says...</h1>
-<div>
-    hey there partner! <br/>
-    <strong>{{ boldmessage }}</strong>
-</div>
-<div>
-    <h2>Most Liked Categories</h2>
-</div>
-<div>
-    {% if categories %}
-        <ul>
+    <h1>Rango says...</h1>
+
+    <div>
+        hey there partner! <br/>
+        <strong>{{ boldmessage }}</strong>
+    </div>
+
+    <div>
+        <h2>Most Liked Categories</h2>
+        {% if categories %}
+            <ul>
             {% for category in categories %}
                 <li>
-                    <a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a>
+{#                    <a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a>#}
+                    <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
                 </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <strong>There are no categories present.</strong>
-    {% endif %}
-</div>
-<div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <li><strong>There are no categories present.</strong></li>
+        {% endif %}
+
+    </div>
+
     <div>
         <h2>Most Viewed Pages</h2>
     </div>
@@ -47,18 +44,18 @@
 
             {% endfor %}
         </ul>
-        <a href="/rango/add_page/{{ category }}">Add a New Page</a><br/>
+{#        <a href="/rango/add_page/{{ category }}">Add a New Page</a><br/>#can't add this "add new page"in index page}#}
     {% else %}
         <strong>There are no pages present.</strong>
     {% endif %}
 </div>
 <div>
-    <a href="/rango/add_category/">Add a New Category</a><br />
-    <a href="/rango/about/">About</a><br/>
+{#    <a href="/rango/add_category/">Add a New Category</a><br />#}
+{#    <a href="/rango/about/">About</a><br/>#}
+{#    <a href="{% url 'about' %}">About</a>#}
 
 
     <img src="{% static  'images/rango.jpg' %}"
          alt="Picture of Rango"/>
 </div>
-</body>
-</html>
+{% endblock %}
