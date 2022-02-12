@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'rango',
 ]
 
+# LOGIN PAGE
+LOGIN_URL = '/rango/login/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
